@@ -73,8 +73,7 @@ module.exports = {
   markdownit: {
     preset: 'default',
     linkify: true,
-    breaks: true,
-    use: [['markdown-it-container', containerName], 'markdown-it-attrs']
+    breaks: true
   },
   /*
    ** Axios module configuration
