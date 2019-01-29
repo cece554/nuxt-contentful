@@ -1,0 +1,235 @@
+$font_path: '~@/assets/fonts/';
+
+@font-face {
+  font-family: 'GTSectraDisplay';
+  src: url($font_path +'GTSectraDisplay-Regular.woff2') format('woff2'),
+    url($font_path +'GTSectraDisplay-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'GTSectraDisplay';
+  src: url($font_path +'GTSectraDisplay-Medium.woff2') format('woff2'),
+    url($font_path +'GTSectraDisplay-Medium.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'GTSectraDisplay';
+  src: url($font_path +'GTSectraDisplay-MediumItalic.woff2') format('woff2'),
+    url($font_path +'GTSectraDisplay-MediumItalic.woff') format('woff');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'GTSectraDisplay';
+  src: url($font_path +'GTSectraDisplay-Bold.woff2') format('woff2'),
+    url($font_path +'GTSectraDisplay-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+
+
+@font-face {
+  font-family: 'GTSectraDisplay';
+  src: url($font_path +'GTSectraDisplay-BoldItalic.woff2') format('woff2'),
+    url($font_path +'GTSectraDisplay-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+
+}
+
+
+@font-face {
+  font-family: 'GTSectraDisplay-Super';
+  src: url($font_path +'GTSectraDisplay-Super.woff2') format('woff2'),
+    url($font_path +'GTSectraDisplay-Super.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'GTSectraDisplay-SuperItalic';
+  src: url($font_path +'GTSectraDisplay-SuperItalic.woff2') format('woff2'),
+    url($font_path +'GTSectraDisplay-SuperItalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+
+
+/*************** Halcyon ************/
+
+@font-face {
+  font-family: 'Halcyon Hairline';
+  src: url($font_path +'Halcyon-Hairline.woff2') format('woff2'),
+    url($font_path +'Halcyon-Hairline.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Halcyon Hairline';
+  src: url($font_path +'Halcyon-HairlineItalic.woff2') format('woff2'),
+    url($font_path +'Halcyon-HairlineItalic.woff') format('woff');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+@font-face {
+  font-family: 'Halcyon';
+  src: url($font_path +'Halcyon-Thin.woff2') format('woff2'),
+    url($font_path +'Halcyon-Thin.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+@font-face {
+  font-family: 'Halcyon';
+  src: url($font_path +'Halcyon-ThinItalic.woff2') format('woff2'),
+    url($font_path +'Halcyon-ThinItalic.woff') format('woff');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Halcyon';
+  src: url($font_path +'Halcyon-Light.woff2') format('woff2'),
+    url($font_path +'Halcyon-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Halcyon';
+  src: url($font_path +'Halcyon-LightItalic.woff2') format('woff2'),
+    url($font_path +'Halcyon-LightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+
+
+@font-face {
+  font-family: 'Halcyon';
+  src: url($font_path +'Halcyon-Regular.woff2') format('woff2'),
+    url($font_path +'Halcyon-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Halcyon';
+  src: url($font_path +'Halcyon-RegularItalic.woff2') format('woff2'),
+    url($font_path +'Halcyon-RegularItalic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Halcyon';
+  src: url($font_path +'Halcyon-Medium.woff2') format('woff2'),
+    url($font_path +'Halcyon-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+@font-face {
+  font-family: 'Halcyon';
+  src: url($font_path +'Halcyon-MediumItalic.woff2') format('woff2'),
+    url($font_path +'Halcyon-MediumItalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'Halcyon';
+  src: url($font_path +'Halcyon-SemiBoldItalic.woff2') format('woff2'),
+    url($font_path +'Halcyon-SemiBoldItalic.woff') format('woff');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Halcyon';
+  src: url($font_path +'Halcyon-SemiBold.woff2') format('woff2'),
+    url($font_path +'Halcyon-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+
+
+@font-face {
+  font-family: 'Halcyon';
+  src: url($font_path +'Halcyon-Bold.woff2') format('woff2'),
+    url($font_path +'Halcyon-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+@font-face {
+  font-family: 'Halcyon';
+  src: url($font_path +'Halcyon-BoldItalic.woff2') format('woff2'),
+    url($font_path +'Halcyon-BoldItalic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Halcyon';
+  src: url($font_path +'Halcyon-Black.woff2') format('woff2'),
+    url($font_path +'Halcyon-Black.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+@font-face {
+  font-family: 'Halcyon';
+  src: url($font_path +'Halcyon-BlackItalic.woff2') format('woff2'),
+    url($font_path +'Halcyon-BlackItalic.woff') format('woff');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+  text-rendering : optimizeLegibility;
+}
+
+
+
+
