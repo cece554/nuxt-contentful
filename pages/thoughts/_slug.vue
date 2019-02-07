@@ -10,6 +10,7 @@
         </h2>
       </div>
       <div class="journal-entry">
+        // eslint-disable-next-line
         <span v-html="post.fields.body" />
       </div>
     </article>
@@ -32,7 +33,8 @@ export default {
         return {
           post: entries.items[0]
         }
-      })
+      }) // eslint-disable-next-line
+      .catch(console.error)
   }
 }
 </script>

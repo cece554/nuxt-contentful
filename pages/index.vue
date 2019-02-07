@@ -10,7 +10,7 @@
         title="our approach"
         description="We use a tailored approach that focused on the business goals and the consumers needs"
       />
-      <projects
+      <pro
         title="selected works"
         description="A brief selection of some of our favorite projects form recently"
       />
@@ -27,7 +27,7 @@
 import hero from '~/layouts/sections/hero'
 import offerings from '~/layouts/sections/offerings'
 import approach from '~/layouts/sections/approach'
-import projects from '~/layouts/sections/projects'
+import pro from '~/layouts/sections/pro'
 import contact from '~/layouts/sections/contact'
 import elevator from '~/components/elevator'
 
@@ -38,7 +38,7 @@ export default {
     hero,
     offerings,
     approach,
-    projects,
+    pro,
     contact,
     elevator
   }

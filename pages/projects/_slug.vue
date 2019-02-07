@@ -52,7 +52,8 @@ export default {
         return {
           project: projects.items[0]
         }
-      })
+      }) // eslint-disable-next-line
+      .catch(console.error)
   }
 }
 </script>

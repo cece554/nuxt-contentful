@@ -3,6 +3,10 @@ const config = require('./.contentful.json')
 
 module.exports = {
   mode: 'universal',
+  server: {
+    port: 3030 // default: 3000
+    // default: localhost
+  },
 
   /*
    ** Headers of the page
@@ -115,6 +119,8 @@ module.exports = {
     CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN,
     CTF_PERSON_ID: config.CTF_PERSON_ID,
     CTF_BLOG_POST_TYPE_ID: config.CTF_BLOG_POST_TYPE_ID,
-    CTF_PROJECT_TYPE_ID: config.CTF_PROJECT_TYPE_ID
+    CTF_PROJECT_TYPE_ID: config.CTF_PROJECT_TYPE_ID,
+    CTF_CATEGORY_TYPE_ID: config.CTF_CATEGORY_TYPE_ID,
+    CTF_COMPANY_TYPE_ID: config.CTF_COMPANY_TYPE_ID
   }
 }

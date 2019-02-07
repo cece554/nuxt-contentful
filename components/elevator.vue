@@ -1,47 +1,130 @@
 <template>
-  <div class="back-to-top-container back-to-top-container--intersecting" data-controller="viewport-entrance-toggle" data-viewport-entrance-toggle-class="back-to-top-container--intersecting">
-    <button class="back-to-top__button button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
-      Back to top
-    </button>
-  </div>
+  <transition name="back-to-top-fade">
+    <div
+      class="vue-back-to-top"
+      v-show="visible"
+      :style="`bottom:${this.bottom};right:${this.right};`"
+      @click="backToTop"
+>
+      <slot>
+        <div class="default">
+          <span>
+            {{ text }}
+          </span>
+        </div>
+      </slot>
+    </div>
+  </transition>
 </template>
 
 <script>
+export default {
+  name: 'BackToTop',
+  props: {
+    text: {
+      type: String,
+      default: 'Voltar ao topo'
+    },
+    visibleoffset: {
+      type: [String, Number],
+      default: 600
+    },
+    visibleoffsetbottom: {
+      type: [String, Number],
+      default: 0
+    },
+    right: {
+      type: String,
+      default: '30px'
+    },
+    bottom: {
+      type: String,
+      default: '40px'
+    },
+    scrollFn: {
+      type: Function,
+      default: function(eventObject) {}
+    }
+  },
+  data() {
+    return {
+      visible: false
+    }
+  },
+  mounted() {
+    window.smoothscroll = () => {
+      const currentScroll =
+        document.documentElement.scrollTop || document.body.scrollTop
+      if (currentScroll > 0) {
+        window.requestAnimationFrame(window.smoothscroll)
+        window.scrollTo(0, Math.floor(currentScroll - currentScroll / 5))
+      }
+    }
+    window.addEventListener('scroll', this.catchScroll)
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.catchScroll)
+  },
+  methods: {
+    /**
+     * Catch window scroll event
+     * @return {void}
+     */
+    catchScroll() {
+      const pastTopOffset = window.pageYOffset > parseInt(this.visibleoffset)
+      const pastBottomOffset =
+        window.innerHeight + window.pageYOffset >=
+        document.body.offsetHeight - parseInt(this.visibleoffsetbottom)
+      this.visible =
+        parseInt(this.visibleoffsetbottom) > 0
+          ? pastTopOffset && !pastBottomOffset
+          : pastTopOffset
+      this.scrollFn(this)
+    },
+    /**
+     * The function who make the magics
+     * @return {void}
+     */
+    backToTop() {
+      window.smoothscroll()
+      this.$emit('scrolled')
+    }
+  }
+}
 </script>
-
-<style scoped>
-.back-to-top-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100vh;
-  width: 100vw;
+<style lang="scss" scoped>
+.back-to-top-fade-enter-active,
+.back-to-top-fade-leave-active {
+  transition: opacity 0.7s;
 }
-
-.back-to-top__button {
-  position: fixed;
-  bottom: 1rem;
-  right: 2rem;
-  opacity: 1;
-  visibility: visible;
-  transition: all 0.2s ease;
-}
-
-.back-to-top-container--intersecting .back-to-top__button {
+.back-to-top-fade-enter,
+.back-to-top-fade-leave-to {
   opacity: 0;
-  visibility: hidden;
 }
 
-.button {
-  -webkit-appearance: none;
-  background-color: rgba(255, 255, 255, 0.85);
-  display: inline-block;
-  padding: 0.5em 1em;
-  border-radius: 1.5em;
-  vertical-align: middle;
-  text-align: center;
+.vue-back-to-top {
   cursor: pointer;
-  border: 1px solid #555;
-  font-size: 1rem;
+  position: fixed;
+  z-index: 1000;
+}
+
+.vue-back-to-top .default {
+  background-color: #f5c85c;
+  border-radius: 3px;
+  color: #ffffff;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  width: 160px;
+}
+
+.vue-back-to-top .default span {
+  color: #ffffff;
+}
+
+.vue-back-to-top--is-footer {
+  bottom: 50% !important;
+  position: absolute;
+  transform: translateY(50%);
 }
 </style>

@@ -9,7 +9,7 @@
         <h2
           class="title is-2 journal-title"
         >
-          <nuxt-link :to="post.fields.slug">
+          <nuxt-link :to="{ name: 'thoughts-slug', params: { slug: post.fields.slug, id: post.sys.id }}">
             {{ post.fields.title }}
           </nuxt-link>
         </h2>

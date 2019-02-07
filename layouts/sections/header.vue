@@ -30,34 +30,29 @@
         class="navbar-menu"
         :class="{ 'is-active': isActive }"
       >
-        <div class="navbar-end">
-          <a href="#offerings" class="navbar-item">
-            Offerings
-          </a>
-
-          <a href="#approach" class="navbar-item">
-            Approach
-          </a>
-          <a href="#work" class="navbar-item">
-            Work
-          </a>
-          <a href="#contact" class="navbar-item">
-            Contact
-          </a>
-          <nuxt-link
-            to="/thoughts"
-            class="navbar-item"
-          >
-            Thoughts
-          </nuxt-link>
-          <nuxt-link
-            to="
-            newsletter"
-            class="navbar-item newsletter-link"
-          >
-            Newsletter
-          </nuxt-link>
-        </div>
+        <div class="navbar-end" />
+        <a href="/#contact" class="navbar-item">
+          Contact
+        </a>
+        <nuxt-link
+          to="/thoughts"
+          class="navbar-item"
+        >
+          Thoughts
+        </nuxt-link>
+        <nuxt-link
+          to="/projects"
+          class="navbar-item"
+        >
+          Projects
+        </nuxt-link>
+        <nuxt-link
+          to="
+            /newsletter"
+          class="navbar-item newsletter-link"
+        >
+          Newsletter
+        </nuxt-link>
       </div>
     </nav>
   </section>

@@ -70,7 +70,7 @@
                     Join over
                   </p>
                   <p class="standout">
-                    200
+                    2000
                   </p>
                   <p class="stand-back">
                     subscribers
@@ -111,6 +111,7 @@
 
 <script>
 export default {
+  name: 'Newsletter',
   layout: 'headless',
   transition: 'page',
   head() {
@@ -124,7 +125,7 @@ export default {
         },
         {
           name: 'keywords',
-          content: 'Lorem ipsum, dolor, sit, amet, consectetur'
+          content: 'Newsletter, Entrepreneur, founder'
         }
       ]
     }

@@ -3,14 +3,13 @@
     <div class="posts-container">
       <article
         v-for="project in projects"
-        :id="project.id"
-        :key="project.slug"
+        :key="project.id"
         class="post-preview"
       >
         <h2
           class="title is-2 journal-title"
         >
-          <nuxt-link :to="project.fields.slug">
+          <nuxt-link :to="{ name: 'projects-slug', params: { slug: project.fields.slug, id: project.sys.id }}">
             {{ project.fields.projectTitle }}
           </nuxt-link>
         </h2>
@@ -26,7 +25,7 @@ const client = createClient()
 export default {
   name: 'Projects',
   // `env` is available in the context object
-  asyncData({ env }) {
+  asyncData({ env, params }) {
     return Promise.all([
       // fetch the owner of the blog
       client.getEntries({
@@ -37,13 +36,16 @@ export default {
         content_type: 'project',
         order: '-sys.createdAt'
       })
-    ]).then(([entries, projects]) => {
-      // return data that should be available
-      // in the template
-      return {
-        projects: projects.items
-      }
-    })
+    ])
+      .then(([entries, projects]) => {
+        // return data that should be available
+        // in the template
+        return {
+          person: entries.items[0],
+          projects: projects.items
+        }
+      }) // eslint-disable-next-line
+      .catch(console.error)
   }
 }
 </script>
