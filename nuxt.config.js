@@ -1,5 +1,5 @@
-const pkg = require('./package')
-const config = require('./.contentful.json')
+require('dotenv').config()
+const contentful = require('contentful')
 
 module.exports = {
   mode: 'universal',
@@ -12,7 +12,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: pkg.name,
+    title: 'Thats Really Good',
     meta: [
       {
         charset: 'utf-8'
@@ -24,7 +24,7 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: pkg.description
+        content: 'my description'
       }
     ],
     link: [
@@ -50,7 +50,7 @@ module.exports = {
    ** Customize the progress-bar color
    */
   loading: {
-    color: '#fff'
+    color: '#eee'
   },
 
   /*
@@ -75,9 +75,12 @@ module.exports = {
     '@nuxtjs/markdownit'
   ],
   markdownit: {
-    preset: 'default',
+    injected: true,
+    breaks: true,
+    html: true,
     linkify: true,
-    breaks: true
+    typography: true,
+    use: ['markdown-it-toc', 'markdown-it-highlightjs']
   },
   /*
    ** Axios module configuration
@@ -112,15 +115,30 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+      config.node = {
+        fs: 'empty'
+      }
     }
   },
-  env: {
-    CTF_SPACE_ID: config.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN,
-    CTF_PERSON_ID: config.CTF_PERSON_ID,
-    CTF_BLOG_POST_TYPE_ID: config.CTF_BLOG_POST_TYPE_ID,
-    CTF_PROJECT_TYPE_ID: config.CTF_PROJECT_TYPE_ID,
-    CTF_CATEGORY_TYPE_ID: config.CTF_CATEGORY_TYPE_ID,
-    CTF_COMPANY_TYPE_ID: config.CTF_COMPANY_TYPE_ID
+  generate: {
+    routes: () => {
+      const client = contentful.createClient({
+        space: process.env.CTF_SPACE_ID,
+        accessToken: process.env.CTF_CD_ACCESS_TOKEN
+      })
+
+      return client
+        .getEntries({
+          content_type: 'blogPost'
+        })
+        .then(response => {
+          return response.items.map(entry => {
+            return {
+              route: entry.fields.slug,
+              payload: entry
+            }
+          })
+        })
+    }
   }
 }

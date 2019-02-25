@@ -18,44 +18,94 @@
         </div>
         <div class="column right-side">
           <h2 class="title is-2">
-            Take a break from the hustle and enjoy A thoughtfully curated weekly
-            newsletter that features a selection of finds on bringing
-            excitement, inspiration, cool gear, and productivity to your daily
-            work.
+            Take a break from the hustle and enjoy a thoughtfully curated weekly newsletter featuring selections focused on enhancing your health, wealth, and productivity while bringing excitement and cool gear to your daily life and work.
           </h2>
 
           <div class="subscribe-form">
-            <form
-              id="subscribe"
-              action="https://thatsreallygood.us19.list-manage.com/subscribe/post?u=c22b915922e240b61b859da7a&amp;id=861dc783ee"
-              method="post"
-              @submit.prevent="processForm"
+            <div
+              id="mauticform_wrapper_trgsubscribeform"
+              class="mauticform_wrapper"
             >
-              <div class="field is-horizontal">
-                <div class="field f email">
-                  <p class="control i-email">
-                    <label for="email">
-                      Email
-                    </label>
-                    <input
-
-                      class="input"
-                      type="email"
-                      name="email"
-                      placeholder="jay@patrick.com"
-                      required
+              <form
+                id="mauticform_trgsubscribeform subscribe"
+                autocomplete="false"
+                role="form"
+                method="post"
+                action="https://mautic.thatsreallygood.co/form/submit?formId=1"
+                data-mautic-form="trgsubscribeform"
+                enctype="multipart/form-data"
+              >
+                <div class=" ">
+                  <div class="field is-horizontal" data-mautic-form-page="1">
+                    <div
+                      id="mauticform_trgsubscribeform_email"
+                      class="field f email control i-email"
                     >
-                  </p>
-                </div>
-                <div class="field f fl submit">
-                  <div class="control i-submit">
-                    <button type="submit" class="button is-red">
-                      Subscribe!
-                    </button>
+                      <label
+                        id="mauticform_label_trgsubscribeform_email"
+                        for="mauticform_input_trgsubscribeform_email email"
+                      >
+                        Email
+                      </label>
+                      <input
+                        id="mauticform_input_trgsubscribeform_email"
+                        name="mauticform[email]"
+                        value=""
+                        class="input"
+                        type="email"
+                        placeholder="jay@patrick.com"
+                        required
+                      >
+                    </div>
+
+                    <div
+                      id="mauticform_trgsubscribeform_submit"
+                      class="field f fl submit"
+                    >
+                      <div class="control i-submit">
+                        <button
+                          id="mauticform_input_trgsubscribeform_submit"
+                          type="submit"
+                          name="mauticform[submit]"
+                          value=""
+                          class="button"
+                        >
+                          SUBSCRIBE
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </form>
+                <span class="mauticform-errormsg" style="display: none;" />
+                <div
+                  id="mauticform_trgsubscribeform_error"
+                  class="mauticform-error "
+                />
+                <div
+                  id="mauticform_trgsubscribeform_message"
+                  class="mauticform-message"
+                />
+                <input
+                  id="mauticform_trgsubscribeform_id"
+                  type="hidden"
+                  name="mauticform[formId]"
+                  value="1"
+                >
+                <input
+                  id="mauticform_trgsubscribeform_return"
+                  type="hidden"
+                  name="mauticform[return]"
+                  value=""
+                >
+                <input
+                  id="mauticform_trgsubscribeform_name"
+                  type="hidden"
+                  name="mauticform[formName]"
+                  value="trgsubscribeform"
+                >
+              </form>
+            </div>
+
 
             <div class="subtext">
               One email per week. No spam ever
@@ -121,17 +171,20 @@ export default {
         {
           name: 'description',
           content:
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium deserunt maxime provident id iste distinctio mollitia labore! Sapiente expedita magnam perferendis beatae, ratione vero ducimus praesentium debitis eum laboriosam. Recusandae!'
+            'A thoughtfully curated weekly newsletter featuring selections focused on enhancing your health, wealth, and productivity while bringing excitement and cool gear to your daily life and work.'
         },
         {
           name: 'keywords',
-          content: 'Newsletter, Entrepreneur, founder'
+          content:
+            'recommendations, tech, entrepreneur, founder, design, development, gadgets, gear, apps, email, newsletter'
         }
       ]
     }
   }
 }
 </script>
+
+
 
 <style lang="scss" scoped>
 $red: #f04d24;

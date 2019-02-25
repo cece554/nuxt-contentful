@@ -19,33 +19,15 @@
 </template>
 
 <script>
-import { createClient } from '~/plugins/contentful'
-
-const client = createClient()
 export default {
   name: 'Projects',
-  // `env` is available in the context object
-  asyncData({ env, params }) {
-    return Promise.all([
-      // fetch the owner of the blog
-      client.getEntries({
-        'sys.id': env.CTF_PERSON_ID
-      }),
-      // fetch all blog posts sorted by creation date
-      client.getEntries({
-        content_type: 'project',
-        order: '-sys.createdAt'
-      })
-    ])
-      .then(([entries, projects]) => {
-        // return data that should be available
-        // in the template
-        return {
-          person: entries.items[0],
-          projects: projects.items
-        }
-      }) // eslint-disable-next-line
-      .catch(console.error)
+  computed: {
+    projects() {
+      return this.$store.state.projects.projects
+    }
+  },
+  async fetch({ store, params }) {
+    await store.dispatch('projects/getProjects', params.slug)
   }
 }
 </script>

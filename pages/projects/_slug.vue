@@ -38,22 +38,17 @@
   </section>
 </template>
 <script>
-import { createClient } from '~/plugins/contentful'
-
-const client = createClient()
 export default {
-  asyncData({ env, params }) {
-    return client
-      .getEntries({
-        content_type: 'project',
-        'fields.slug': params.slug
-      })
-      .then(projects => {
-        return {
-          project: projects.items[0]
-        }
-      }) // eslint-disable-next-line
-      .catch(console.error)
+  computed: {
+    currentPost() {
+      return this.$store.state.project.currentProject
+    },
+    isLoading() {
+      return this.$store.state.project.isLoading
+    }
+  },
+  async fetch({ store, params }) {
+    await store.dispatch('project/getProjectBySlug', params.slug)
   }
 }
 </script>

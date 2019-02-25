@@ -31,9 +31,7 @@
         :class="{ 'is-active': isActive }"
       >
         <div class="navbar-end" />
-        <a href="/#contact" class="navbar-item">
-          Contact
-        </a>
+        <!--
         <nuxt-link
           to="/thoughts"
           class="navbar-item"
@@ -46,13 +44,16 @@
         >
           Projects
         </nuxt-link>
+        -->
         <nuxt-link
-          to="
-            /newsletter"
+          to="/newsletter"
           class="navbar-item newsletter-link"
         >
           Newsletter
         </nuxt-link>
+        <a href="/#contact" class="navbar-item">
+          Contact
+        </a>
       </div>
     </nav>
   </section>

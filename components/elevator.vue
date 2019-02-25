@@ -1,11 +1,12 @@
 <template>
   <transition name="back-to-top-fade">
+    <!--
     <div
-      class="vue-back-to-top"
       v-show="visible"
+      class="vue-back-to-top"
       :style="`bottom:${this.bottom};right:${this.right};`"
       @click="backToTop"
->
+    >
       <slot>
         <div class="default">
           <span>
@@ -14,16 +15,16 @@
         </div>
       </slot>
     </div>
+    -->
   </transition>
 </template>
-
 <script>
 export default {
   name: 'BackToTop',
   props: {
     text: {
       type: String,
-      default: 'Voltar ao topo'
+      default: 'Back to Top'
     },
     visibleoffset: {
       type: [String, Number],

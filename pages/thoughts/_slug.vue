@@ -1,41 +1,44 @@
 <template>
   <section class="journal section">
-    <article class="journal-container">
+    <article v-if="!isLoading" class="journal-container">
       <div class="journal-details">
         <h6 class="journal-date title is-6">
-          {{ post.fields.date }}
+          {{ currentPost.fields.date }}
         </h6>
         <h2 class="journal-title title is-2">
-          {{ post.fields.title }}
+          {{ currentPost.fields.title }}
         </h2>
       </div>
       <div class="journal-entry">
-        // eslint-disable-next-line
-        <span v-html="post.fields.body" />
+        <div v-html="$md.render(currentPost.fields.body)" />
       </div>
     </article>
+    <p v-else class="loading">
+      Loading
+    </p>
   </section>
 </template>
 
 <script>
-import { createClient } from '~/plugins/contentful'
+// import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
-const client = createClient()
 export default {
-  // `env` is available in the context object
-  asyncData({ env, params }) {
-    return client
-      .getEntries({
-        content_type: 'blogPost',
-        'fields.slug': params.slug
-      })
-      .then(entries => {
-        return {
-          post: entries.items[0]
-        }
-      }) // eslint-disable-next-line
-      .catch(console.error)
+  computed: {
+    currentPost() {
+      return this.$store.state.post.currentPost
+    },
+    isLoading() {
+      return this.$store.state.post.isLoading
+    }
+  },
+  async fetch({ store, params }) {
+    await store.dispatch('post/getPostBySlug', params.slug)
   }
+  /* created() {
+    this.richBody = this.post.fields.body
+      ? documentToHtmlString(this.post.fields.body, this.renderOptions)
+      : ''
+  } */
 }
 </script>
 

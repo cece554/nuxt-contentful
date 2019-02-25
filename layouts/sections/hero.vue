@@ -9,6 +9,7 @@
         </div>
       </div>
     </div>
+  <!--
     <div class="local-nav">
       <a href="/#offerings" class="local-nav-item">
         Offerings
@@ -24,6 +25,7 @@
         Contact
       </a>
     </div>
+    -->
   </section>
 </template>
 

@@ -9,58 +9,54 @@
       </p>
     </div>
     <div class="container">
-      <div id="app">
-        <div class="title-container">
-          <div>
-            <h3 class="title">
-              Our Projects
-            </h3>
-          </div>
-          <div class="filters">
-            <span v-for="category in categories" :key="category.id" class="filter">
-              <h1>{{ category.fields.title }}</h1>
-            </span>
-
-            <!-- <span class="filter" :class="{ active: currentFilter === 'ALL' }" @click="setFilter('ALL')">
-              ALL
-            </span>
-            <span class="filter" :class="{ active: currentFilter === 'ART' }" @click="setFilter('ART')">
-              ART
-            </span>
-            <span class="filter" :class="{ active: currentFilter === 'WORKSHOPS' }" @click="setFilter('WORKSHOPS')">
-              WORKSHOPS
-            </span>
-            <span class="filter" :class="{ active: currentFilter === 'FUN' }" @click="setFilter('FUN')">
-              FUN
-            </span> -->
-          </div>
+      <!-- check boxes -->
+      <div id="projectSort">
+        <div
+          v-for="(category, index) in categories"
+          :key="index"
+          class="form-check form-check-inline"
+        >
+          <label
+            class="form-check-label"
+            :class="{ 'has-text-weight-semibold': category.checked }"
+          >
+            <input
+              v-model="category.checked"
+              class="form-check-input"
+              type="checkbox"
+              @change="getfilteredData"
+            >
+            {{ category.value }}
+          </label>
         </div>
-
-        <transition-group class="projects" name="projects">
-          <div v-for="project in projects" :key="project.id" class="project">
-            <div class="project-image-wrapper">
-              <img class="project-image" :src="project.fields.projectImage.fields.file.url">
-              <div class="gradient-overlay" />
-              <div class="circle">
-                <span class="project-title">
-                  {{ project.fields.company }}
-                </span>
-              </div>
-            </div>
-          </div>
-        </transition-group>
       </div>
-      <div class="container" />
+
+      <!-- end of checkboxes -->
+      <div class="container">
+        <div class="columns is-multiline is-6">
+          <work-card
+            v-for="(item, index) in filteredData"
+            :key="index"
+            :item="item"
+          />
+        </div>
+      </div>
     </div>
   </section>
 </template>
 
-<script>
-import { createClient } from '~/plugins/contentful'
 
-const client = createClient()
+<script>
+// import { createClient } from '~/plugins/contentful'
+import workCard from '~~/components/workCard'
+import data from '~/data/data'
+
+// const client = createClient()
 export default {
   name: 'Pro',
+  components: {
+    'work-card': workCard
+  },
   props: {
     description: {
       type: String,
@@ -71,6 +67,7 @@ export default {
       required: true
     }
   },
+  /*
   asyncData({ env, params }) {
     return Promise.all([
       // fetch the owner of the blog
@@ -93,147 +90,65 @@ export default {
       }) // eslint-disable-next-line
       .catch(console.error)
   },
+*/
+  data() {
+    return {
+      filteredData: [],
+      categories: [
+        {
+          checked: false,
+          value: 'Design'
+        },
+
+        {
+          checked: false,
+          value: 'Development'
+        },
+
+        {
+          checked: false,
+          value: 'Branding'
+        }
+      ]
+    }
+  },
+  computed: {
+    selectedFilters() {
+      const filters = []
+
+      const checkedFiters = this.categories.filter(obj => obj.checked)
+
+      checkedFiters.forEach(element => {
+        filters.push(element.value)
+      })
+
+      return filters
+    }
+  },
+
+  mounted() {
+    this.getfilteredData()
+  },
   methods: {
-    setFilter: function(filter) {
-      this.currentFilter = filter
+    getfilteredData() {
+      this.filteredData = data
+      let filteredDataByfilters = []
+
+      // first check if filters where selected
+
+      if (this.selectedFilters.length > 0) {
+        filteredDataByfilters = this.filteredData.filter(obj =>
+          this.selectedFilters.every(val => obj.category.indexOf(val) >= 0)
+        )
+        this.filteredData = filteredDataByfilters
+      }
     }
   }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-html,
-body {
-  margin: 0;
-  font-family: 'Helvetica';
-}
-
-.title-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.title {
-  font-family: 'Helvetica', cursive;
-  font-size: 30pt;
-  font-weight: normal;
-}
-
-.project-title {
-  font-size: 16pt;
-}
-
-.filter {
-  font-family: arial;
-  padding: 6px 6px;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: all 0.35s;
-}
-
-.filter.active {
-  box-shadow: 0px 1px 3px 0px #00000026;
-}
-
-.filter:hover {
-  background: lightgray;
-}
-
-.projects {
-  margin-top: 25px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.projects-enter {
-  transform: scale(0.5) translatey(-80px);
-  opacity: 0;
-}
-
-.projects-leave-to {
-  transform: translatey(30px);
-  opacity: 0;
-}
-
-.projects-leave-active {
-  position: absolute;
-  z-index: -1;
-}
-
-.circle {
-  text-align: center;
-  position: absolute;
-  bottom: -38px;
-  left: 40px;
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-  /* 	border:1px solid black; */
-  display: flex;
-  box-shadow: 0px -4px 3px 0px #494d3257;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  /* 	box-shadow:0px -3px 3px #484848a6; */
-}
-
-.project {
-  /* 	position:relative; */
-  transition: all 0.35s ease-in-out;
-  margin: 10px;
-  box-shadow: 0px 2px 8px lightgrey;
-  border-radius: 3px;
-  width: 180px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  /* 	justify-content:center; */
-  align-items: center;
-}
-
-.project-image-wrapper {
-  position: relative;
-}
-
-.gradient-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 150px;
-  /* 	width:100%; */
-  /* 	height:100%; */
-  opacity: 0.09;
-  background: linear-gradient(
-      to bottom,
-      rgba(0, 210, 247, 0.65) 0%,
-      rgba(0, 210, 247, 0.64) 1%,
-      rgba(0, 0, 0, 0) 100%
-    ),
-    linear-gradient(
-      to top,
-      rgba(247, 0, 156, 0.65) 0%,
-      rgba(247, 0, 156, 0.64) 1%,
-      rgba(0, 0, 0, 0) 100%
-    );
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-}
-
-.project-image {
-  width: 100%;
-  height: 150px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-}
-/*#projectSort {
+#projectSort {
   display: flex;
   flex-direction: row;
   margin-bottom: 30px;
@@ -249,5 +164,5 @@ label:hover {
 }
 .checkboxes div > :first-child {
   margin-left: 0;
-} */
+}
 </style>
